@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>¿Quién paso por aquí? </title>
+  <title>¿Quién pasó por aquí?</title>
 
   <style>
     :root {
@@ -587,131 +587,179 @@
     }
 
 
-   @media (max-width: 720px) {
+    /* SEPARADOR DE NIVELES */
 
-  .pantalla {
-    padding: 10px;
-  }
+    .nivel-fondo {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(5, 10, 7, 0.92);
+      z-index: 40;
+    }
+
+    .nivel-fondo.activo {
+      display: flex;
+    }
+
+    .nivel-card {
+      width: min(620px, 100%);
+      text-align: center;
+      background: rgba(24, 35, 27, 0.98);
+      border: 1px solid var(--borde);
+      border-radius: 24px;
+      padding: clamp(30px, 7vw, 54px) clamp(20px, 6vw, 44px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .nivel-card .nivel-superior {
+      margin: 0 0 10px;
+      color: var(--verde);
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .nivel-card h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 8vw, 3.8rem);
+    }
+
+    .nivel-card .nivel-descripcion {
+      margin: 0 auto 26px;
+      max-width: 470px;
+      color: var(--texto-suave);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
 
 
-  /*
+    @media (max-width: 720px) {
+
+      .pantalla {
+        padding: 10px;
+      }
+
+
+      /*
     La ficha pasa de dos columnas
     a una sola.
   */
 
-  .modal-fondo {
-    padding: 10px;
+      .modal-fondo {
+        padding: 10px;
 
-    /*
+        /*
       En celular conviene que la ficha
       arranque desde arriba si es larga.
     */
-    align-items: flex-start;
-  }
+        align-items: flex-start;
+      }
 
-  .modal {
-    width: 100%;
+      .modal {
+        width: 100%;
 
-    max-height:
-      calc(100dvh - 20px);
+        max-height:
+          calc(100dvh - 20px);
 
-    border-radius: 16px;
-  }
+        border-radius: 16px;
+      }
 
-  .modal-grid {
-    grid-template-columns: 1fr;
-  }
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
 
 
-  /*
+      /*
     La foto ocupa un tamaño razonable
     pero nunca se recorta.
   */
 
-  .modal-imagen {
-    width: 100%;
+      .modal-imagen {
+        width: 100%;
 
-    min-height: 0;
+        min-height: 0;
 
-    height: auto;
+        height: auto;
 
-    padding: 8px;
-  }
+        padding: 8px;
+      }
 
-  .modal-imagen img {
-    width: 100%;
-    height: auto;
+      .modal-imagen img {
+        width: 100%;
+        height: auto;
 
-    max-height: 42dvh;
+        max-height: 42dvh;
 
-    object-fit: contain;
-  }
-
-
-  .modal-contenido {
-    padding: 20px;
-  }
-
-  .modal-contenido h2 {
-    font-size: 1.5rem;
-  }
-
-  #descripcionAnimal {
-    font-size: 0.95rem;
-
-    line-height: 1.5;
-  }
+        object-fit: contain;
+      }
 
 
-  /*
+      .modal-contenido {
+        padding: 20px;
+      }
+
+      .modal-contenido h2 {
+        font-size: 1.5rem;
+      }
+
+      #descripcionAnimal {
+        font-size: 0.95rem;
+
+        line-height: 1.5;
+      }
+
+
+      /*
     El botón ocupa todo el ancho
     en celular.
   */
 
-  .modal-contenido .btn {
-    width: 100%;
+      .modal-contenido .btn {
+        width: 100%;
 
-    margin-top: 8px;
-  }
+        margin-top: 8px;
+      }
 
 
-  /*
+      /*
     JUEGO
   */
 
-  .barra-superior {
-    gap: 8px;
-  }
+      .barra-superior {
+        gap: 8px;
+      }
 
-  .titulo-juego {
-    width: 100%;
-  }
+      .titulo-juego {
+        width: 100%;
+      }
 
-  .estado {
-    width: 100%;
+      .estado {
+        width: 100%;
 
-    justify-content: space-between;
-  }
+        justify-content: space-between;
+      }
 
-  #fotoJuego {
-    max-width: 100%;
+      #fotoJuego {
+        max-width: 100%;
 
-    max-height: 65dvh;
-  }
+        max-height: 65dvh;
+      }
 
 
-  /*
+      /*
     EDITOR
   */
 
-  .control-editor {
-    grid-template-columns:
-      75px
-      1fr
-      50px;
-  }
+      .control-editor {
+        grid-template-columns:
+          75px 1fr 50px;
+      }
 
-}
+    }
   </style>
 </head>
 
@@ -726,7 +774,7 @@
     <div class="inicio-card">
 
       <h1>
-        ¿Quién paso por aquí? 
+        ¿Quién pasó por aquí?
       </h1>
 
       <p id="textoInicio">
@@ -742,6 +790,20 @@
     </div>
 
   </section>
+
+
+  <!-- SEPARADOR DE NIVEL -->
+
+  <div id="modalNivel" class="nivel-fondo">
+    <div class="nivel-card">
+      <p class="nivel-superior">¿Quién pasó por aquí?</p>
+      <h2 id="tituloNivel">Nivel fácil</h2>
+      <p id="descripcionNivel" class="nivel-descripcion"></p>
+      <button id="btnComenzarNivel" class="btn btn-principal">
+        Comenzar nivel
+      </button>
+    </div>
+  </div>
 
 
 
@@ -973,6 +1035,21 @@
 
     const VIDAS_INICIALES = 3;
 
+    const niveles = [
+      {
+        nombre: "Nivel fácil",
+        descripcion: "Empezamos con dos animales más fáciles de encontrar."
+      },
+      {
+        nombre: "Nivel medio",
+        descripcion: "Ahora los animales están un poco más escondidos. Mirá con atención."
+      },
+      {
+        nombre: "Nivel difícil",
+        descripcion: "Último nivel. Estos animales son los más difíciles de encontrar."
+      }
+    ];
+
 
 
     /*
@@ -982,29 +1059,6 @@
     */
 
     const animales = [
-
-      {
-        foto: "pajonal.jpeg",
-
-        imagenFicha: "pajonal_info.jpeg",
-
-        nombre:
-          `🐾 Gato del pajonal
-            Leopardus pajeros`,
-
-        descripcion: `
-          🗺️ Distribución: Centro-oeste hasta Estrecho de Magallanes
-          🌙 Actividad: Crepuscular y nocturna
-          🥩 Dieta: Carnívora   
-          🛡️ Estado: Vulnerable (VU)  
-          🔍 Claves de foto: Pelaje largo y tupido, orejas algo puntiagudas y franjas/bandas transversales marcadas en las patas.   
-          💡Es un felino predominantemente terrestre adaptado a la estepa y matorrales aridos.
-          `,
-
-        zona: { cx: 20.7, cy: 45.9, rx: 6.0, ry: 7.5 }
-      },
-
-
       {
         foto: "montes.jpeg",
 
@@ -1032,34 +1086,52 @@ Leopardus geoffroyi`,
         zona: { cx: 10.1, cy: 50.8, rx: 10.5, ry: 16.5 }
 
       },
-
-
       {
-        foto: "raton.jpeg",
+        foto: "cuis.jpeg",
 
-        imagenFicha: "raton_info.jpeg",
+        imagenFicha: "cuis_info.jpeg",
 
         nombre:
-          `🐾 Laucha colilarga común
-Eligmodontia typus`,
+          `Cuis común
+Galea leucoblephara
+`,
 
-        descripcion:
-          `🗺️ Distribución: Endémica de Arg. (La Rioja a Río Negro)
 
-🌙 Actividad: Nocturna
+        descripcion: `
+🗺️ Distribución: Chaco Seco y Monte (amplia distribución)
 
-⚖️ Peso: 17 g
+☀️ Actividad: Diurna y crepuscular
 
-🍖 Dieta: Generalista (hojas, semillas e insectos)
+🌿 Dieta: Herbívora
 
 🛡️ Estado: Preocupación menor
 
-🔍 Clave de foto: Cola más larga que el cuerpo y tamaño muy pequeño.`,
+🔍 Claves de foto: Roedor robusto sin cola visible y con un distintivo "anillo" claro alrededor de los ojos.
 
-        zona: { cx: 81.6, cy: 72.9, rx: 5.0, ry: 6.0 }
+💡 Construye redes de galerías y túneles en el pastizal denso para desplazarse protegido.
+`,
+        zona: { cx: 88.7, cy: 75.1, rx: 7.0, ry: 7.5 }
       },
+      {
+        foto: "pajonal.jpeg",
 
+        imagenFicha: "pajonal_info.jpeg",
 
+        nombre:
+          `🐾 Gato del pajonal
+            Leopardus pajeros`,
+
+        descripcion: `
+          🗺️ Distribución: Centro-oeste hasta Estrecho de Magallanes
+          🌙 Actividad: Crepuscular y nocturna
+          🥩 Dieta: Carnívora   
+          🛡️ Estado: Vulnerable (VU)  
+          🔍 Claves de foto: Pelaje largo y tupido, orejas algo puntiagudas y franjas/bandas transversales marcadas en las patas.   
+          💡Es un felino predominantemente terrestre adaptado a la estepa y matorrales aridos.
+          `,
+
+        zona: { cx: 20.7, cy: 45.9, rx: 6.0, ry: 7.5 }
+      },
       {
         foto: "jabali.jpeg",
 
@@ -1088,6 +1160,31 @@ Sus scrofa`,
 
       },
 
+      {
+        foto: "raton.jpeg",
+
+        imagenFicha: "raton_info.jpeg",
+
+        nombre:
+          `🐾 Laucha colilarga común
+Eligmodontia typus`,
+
+        descripcion:
+          `🗺️ Distribución: Endémica de Arg. (La Rioja a Río Negro)
+
+🌙 Actividad: Nocturna
+
+⚖️ Peso: 17 g
+
+🍖 Dieta: Generalista (hojas, semillas e insectos)
+
+🛡️ Estado: Preocupación menor
+
+🔍 Clave de foto: Cola más larga que el cuerpo y tamaño muy pequeño.`,
+
+        zona: { cx: 81.6, cy: 72.9, rx: 5.0, ry: 6.0 }
+      },
+
 
       {
         foto: "zorro.jpeg",
@@ -1111,32 +1208,7 @@ Sus scrofa`,
   `,
         zona: { cx: 58.0, cy: 35.0, rx: 7.5, ry: 9.5 }
       },
-      {
-        foto: "cuis.jpeg",
 
-        imagenFicha: "cuis_info.jpeg",
-
-        nombre:
-          `Cuis común
-Galea leucoblephara
-`,
-
-
-        descripcion: `
-🗺️ Distribución: Chaco Seco y Monte (amplia distribución)
-
-☀️ Actividad: Diurna y crepuscular
-
-🌿 Dieta: Herbívora
-
-🛡️ Estado: Preocupación menor
-
-🔍 Claves de foto: Roedor robusto sin cola visible y con un distintivo "anillo" claro alrededor de los ojos.
-
-💡 Construye redes de galerías y túneles en el pastizal denso para desplazarse protegido.
-`,
-        zona: { cx: 88.7, cy: 75.1, rx: 7.0, ry: 7.5 }
-      }
 
     ];
 
@@ -1198,6 +1270,27 @@ Galea leucoblephara
     const btnSiguiente =
       document.getElementById(
         "btnSiguiente"
+      );
+
+
+    const modalNivel =
+      document.getElementById(
+        "modalNivel"
+      );
+
+    const tituloNivel =
+      document.getElementById(
+        "tituloNivel"
+      );
+
+    const descripcionNivel =
+      document.getElementById(
+        "descripcionNivel"
+      );
+
+    const btnComenzarNivel =
+      document.getElementById(
+        "btnComenzarNivel"
       );
 
 
@@ -1413,6 +1506,39 @@ Galea leucoblephara
 
 
 
+    function obtenerNivelActual() {
+      const indiceNivel = Math.min(
+        Math.floor(indiceActual / 2),
+        niveles.length - 1
+      );
+
+      return niveles[indiceNivel];
+    }
+
+
+    function mostrarSeparadorNivel() {
+      if (MODO_EDITOR) {
+        return;
+      }
+
+      const nivel = obtenerNivelActual();
+
+      tituloNivel.textContent = nivel.nombre;
+      descripcionNivel.textContent = nivel.descripcion;
+
+      modalNivel.classList.add(
+        "activo"
+      );
+    }
+
+
+    function ocultarSeparadorNivel() {
+      modalNivel.classList.remove(
+        "activo"
+      );
+    }
+
+
     /*
     ============================================================
     INICIAR
@@ -1433,11 +1559,15 @@ Galea leucoblephara
         "activo"
       );
 
+      ocultarSeparadorNivel();
+
       mostrarPantalla(
         pantallaJuego
       );
 
       cargarFotoActual();
+
+      mostrarSeparadorNivel();
 
     }
 
@@ -1470,8 +1600,16 @@ Galea leucoblephara
         animal.foto;
 
 
-      progreso.textContent =
-        `Foto ${indiceActual + 1} de ${animales.length}`;
+      if (MODO_EDITOR) {
+        progreso.textContent =
+          `Foto ${indiceActual + 1} de ${animales.length}`;
+      } else {
+        const nivel = obtenerNivelActual();
+        const fotoDentroDelNivel = (indiceActual % 2) + 1;
+
+        progreso.textContent =
+          `${nivel.nombre} · Foto ${fotoDentroDelNivel} de 2`;
+      }
 
 
       actualizarVidas();
@@ -1938,7 +2076,6 @@ Galea leucoblephara
         "activo"
       );
 
-
       if (
         indiceActual
         ===
@@ -1951,11 +2088,17 @@ Galea leucoblephara
 
       }
 
-
       indiceActual++;
 
-
       cargarFotoActual();
+
+      if (
+        !MODO_EDITOR
+        &&
+        (indiceActual === 2 || indiceActual === 4)
+      ) {
+        mostrarSeparadorNivel();
+      }
 
     }
 
@@ -2248,6 +2391,12 @@ Galea leucoblephara
     btnSiguiente.addEventListener(
       "click",
       siguienteFoto
+    );
+
+
+    btnComenzarNivel.addEventListener(
+      "click",
+      ocultarSeparadorNivel
     );
 
 
