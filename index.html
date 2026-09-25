@@ -760,6 +760,172 @@
       }
 
     }
+
+    /* ============================================================
+   PORTADA
+   ============================================================ */
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Pantalla inicial: nunca genera scroll */
+    .pantalla-portada {
+      position: fixed;
+      inset: 0;
+
+      width: 100vw;
+      height: 100vh;
+      min-height: 0;
+
+      padding: 0;
+      margin: 0;
+
+      overflow: hidden;
+
+      background: #111;
+    }
+
+
+    /*
+  La imagen mantiene su proporción original.
+  Se escala según el ANCHO de la pantalla.
+*/
+    .portada-juego {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100vw;
+      aspect-ratio: 1365 / 768;
+
+      background-image: url("fondo.jpeg");
+      background-size: 100% auto;
+      background-position: top center;
+      background-repeat: no-repeat;
+
+      overflow: hidden;
+    }
+
+
+    /* Caja que tapa la caja dibujada de fondo.jpeg */
+    .portada-panel {
+      position: absolute;
+
+      left: 2.4%;
+      top: 2.5%;
+
+      width: 31%;
+      height: 80%;
+
+      padding: clamp(20px, 3vw, 42px);
+
+      background: #003d25;
+
+      border: 2px solid #e0dda9;
+
+      border-radius:
+        clamp(22px, 3vw, 38px);
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      box-shadow:
+        0 13px 0 rgba(26, 30, 22, 0.85),
+        0 17px 30px rgba(0, 0, 0, 0.35);
+
+      z-index: 2;
+    }
+
+
+    /* TÍTULO */
+
+    .portada-panel h1 {
+      margin: 0 0 28px;
+
+      color: #fff4da;
+
+      font-size:
+        clamp(1.7rem, 3.2vw, 3rem);
+
+      line-height: 1.05;
+    }
+
+
+    /* TEXTO */
+
+    .portada-panel p {
+      margin: 0 0 30px;
+
+      max-width: 360px;
+
+      color: #f0e8d4;
+
+      font-size:
+        clamp(0.85rem, 1.35vw, 1.15rem);
+
+      line-height: 1.55;
+    }
+
+
+    /* BOTÓN */
+
+    .portada-panel .btn-principal {
+      background: #00ef7d;
+
+      color: #102014;
+
+      padding:
+        clamp(11px, 1.2vw, 15px) clamp(22px, 2.4vw, 34px);
+
+      border: 0;
+      border-radius: 999px;
+
+      font-size:
+        clamp(0.85rem, 1.2vw, 1.1rem);
+
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .portada-panel {
+        left: 2.5%;
+        top: 2.5%;
+
+        width: 32%;
+        height: 80%;
+
+        padding: 10px;
+
+        border-width: 1px;
+      }
+
+      .portada-panel h1 {
+        margin-bottom: 10px;
+      }
+
+      .portada-panel p {
+        margin-bottom: 12px;
+
+        line-height: 1.3;
+      }
+
+    }
   </style>
 </head>
 
@@ -769,23 +935,26 @@
 
   <!-- INICIO -->
 
-  <section id="pantallaInicio" class="pantalla activa">
+  <section id="pantallaInicio" class="pantalla activa pantalla-portada">
 
-    <div class="inicio-card">
+    <div class="portada-juego">
 
-      <h1>
-        ¿Quién pasó por aquí?
-      </h1>
+      <div class="portada-panel">
 
-      <p id="textoInicio">
-        Encontrá al animal escondido
-        en cada fotografía.
-        Tenés 3 vidas.
-      </p>
+        <h1>
+          ¿Quién pasó por aquí?
+        </h1>
 
-      <button id="btnIniciar" class="btn btn-principal">
-        Iniciar juego
-      </button>
+        <p id="textoInicio">
+          Encontrá al animal escondido en cada fotografía.
+          Tenés 3 vidas para completar el juego.
+        </p>
+
+        <button id="btnIniciar" class="btn btn-principal">
+          Iniciar juego
+        </button>
+
+      </div>
 
     </div>
 
