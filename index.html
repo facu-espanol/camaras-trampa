@@ -926,6 +926,121 @@
       }
 
     }
+
+    /* ============================================================
+   PORTADA EN CELULAR
+   ============================================================ */
+
+    @media (max-width: 700px) {
+
+      .pantalla-portada {
+        position: fixed;
+        inset: 0;
+
+        width: 100vw;
+        height: 100dvh;
+
+        padding: 0;
+        margin: 0;
+
+        overflow: hidden;
+
+        background: #172017;
+      }
+
+
+      /*
+    En celular dejamos de intentar mostrar
+    la imagen horizontal completa.
+    La usamos como fondo de pantalla.
+  */
+      .portada-juego {
+        position: relative;
+
+        width: 100vw;
+        height: 100dvh;
+
+        aspect-ratio: auto;
+
+        background-image: url("fondo.jpeg");
+
+        background-size: cover;
+
+        /*
+      Esto prioriza la cámara y los animales
+      de la zona derecha.
+    */
+        background-position: 58% center;
+
+        background-repeat: no-repeat;
+
+        overflow: hidden;
+      }
+
+
+      /*
+    La caja pasa abajo.
+    Ya no intentamos hacerla coincidir
+    con la caja dibujada de la imagen.
+  */
+      .portada-panel {
+        position: absolute;
+
+        left: 5%;
+        right: 5%;
+        bottom: 4%;
+
+        top: auto;
+
+        width: 90%;
+        height: auto;
+
+        padding: 22px 18px;
+
+        background: rgba(5, 50, 30, 0.96);
+
+        border: 2px solid #e0dda9;
+        border-radius: 24px;
+
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.45);
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+      }
+
+
+      .portada-panel h1 {
+        margin: 0 0 12px;
+
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+
+        line-height: 1.05;
+      }
+
+
+      .portada-panel p {
+        margin: 0 0 16px;
+
+        max-width: 420px;
+
+        font-size: 0.95rem;
+        line-height: 1.45;
+      }
+
+
+      .portada-panel .btn-principal {
+        padding: 12px 28px;
+
+        font-size: 1rem;
+      }
+
+    }
   </style>
 </head>
 
